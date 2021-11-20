@@ -25,7 +25,17 @@ class SongsController < ApplicationController
   end
 
   def new
-    @song = Song.new
+    #binding.pry
+    @preference = Preference.first
+  
+    if @preference.allow_create_songs
+      @song = Song.new
+    else
+      redirect_to songs_path
+    end 
+    #redirect to 
+    #find the first instance of Preference class
+    #use that instance to determine whether to redirect or display the view
   end
 
   def create
